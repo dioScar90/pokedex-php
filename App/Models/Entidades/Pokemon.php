@@ -3,10 +3,11 @@
 namespace App\Models\Entidades;
 
 
-class Pokemon 
+class Pokemon
 {
     private int $id;
     private string $name;
+    private string $type_name;
 
     public function getId () : int {
         return $this->id;
@@ -22,5 +23,13 @@ class Pokemon
 
     public function setName(string $name) {
         $this->name = $name;
+    }
+
+    public function getTypes() : string {
+        return $this->type_name;
+    }
+
+    public function setTypes(string $type_name) {
+        $this->type_name = $type_name;
     }
 }

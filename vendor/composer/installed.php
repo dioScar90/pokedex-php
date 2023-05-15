@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'ptacca/pokedex',
+        'name' => 'ptacca/pokedex-php',
         'pretty_version' => '1.0.0+no-version-set',
         'version' => '1.0.0.0',
         'reference' => NULL,
@@ -10,7 +10,7 @@
         'dev' => true,
     ),
     'versions' => array(
-        'ptacca/pokedex' => array(
+        'ptacca/pokedex-php' => array(
             'pretty_version' => '1.0.0+no-version-set',
             'version' => '1.0.0.0',
             'reference' => NULL,

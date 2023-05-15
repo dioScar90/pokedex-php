@@ -14,7 +14,10 @@ class PokemonDAO extends BaseDAO
 
             return $resultado->fetchObject(Pokemon::class);
         } else {
-            $resultado = $this->select("SELECT * FROM pokemon");
+            // $resultado = $this->select("SELECT * FROM pokemon");
+            $resultado = $this->select("SELECT P.id, P.name, T.type_name FROM pokemon P
+            INNER JOIN pokemons_types PT ON P.id = PT.pokemon_id
+            INNER JOIN type T ON PT.type_id = T.id LIMIT 50");
             
             return $resultado->fetchAll(\PDO::FETCH_CLASS, pokemon::class);
         }

@@ -18,7 +18,7 @@ class App
         /*
          * Constantes do sistema
          */
-        define("APP_HOST"       , $_SERVER["HTTP_HOST"] . "/pokedex");
+        define("APP_HOST"       , $_SERVER["HTTP_HOST"] . "/pokedex-php");
         define("PATH"           , realpath("./"));
         define("TITLE"          , "Aplicação MVC em PHP - FATEC");
         define("DB_HOST"        , "localhost");
@@ -52,15 +52,17 @@ class App
 
     public function run()
     {
-        if ($this->controller) {
+        if ($this->controller) { // pokemon cai aqui certinho
             $this->controllerName = ucwords($this->controller) . 'Controller';
             $this->controllerName = preg_replace('/[^a-zA-Z]/i', '', $this->controllerName);
+            // echo $this->controllerName;
         } else {
             $this->controllerName = "HomeController";
         }
 
         $this->controllerFile   = $this->controllerName . '.php';
         $this->action           = preg_replace('/[^a-zA-Z]/i', '', $this->action);
+        $this->action = "index";
 
         if (!$this->controller) {
             $this->controller = new HomeController($this);
@@ -70,7 +72,7 @@ class App
         if (!file_exists(PATH . '/App/Controllers/' . $this->controllerFile)) {
             throw new Exception("Página não encontrada.", 404);
         }
-
+        
         $nomeClasse     = "\\App\\Controllers\\" . $this->controllerName;
         $objetoController = new $nomeClasse($this);
 
@@ -79,12 +81,15 @@ class App
         }
         
         if (method_exists($objetoController, $this->action)) {
+            // echo "entrou no method exists";
             $objetoController->{$this->action}($this->params);
             return;
         } else if (!$this->action && method_exists($objetoController, 'index')) {
+            // echo "entrou no method index";
             $objetoController->index($this->params);
             return;
         } else {
+            // echo "putz deu exceção...";
             throw new Exception("Nosso suporte já esta verificando desculpe!", 500);
         }
         throw new Exception("Página não encontrada.", 404);

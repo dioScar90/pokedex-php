@@ -19,6 +19,14 @@ abstract class Controller
         $viewVar = $this->getViewVar();
         $Sessao  = Sessao::class;
 
+        if ($view == "/pokemon/index") {
+            require_once PATH . '/App/Views/layouts/pokeheader.php';
+            require_once PATH . '/App/Views/layouts/pokemenu.php';
+            require_once PATH . '/App/Views/' . $view . '.php';
+            require_once PATH . '/App/Views/layouts/pokefooter.php';
+            return;
+        }
+
         require_once PATH . '/App/Views/layouts/header.php';
         require_once PATH . '/App/Views/layouts/menu.php';
         require_once PATH . '/App/Views/' . $view . '.php';
