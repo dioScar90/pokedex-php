@@ -18,7 +18,7 @@ class PokemonDAO extends BaseDAO
             $sql = "SELECT
                         P.id
                         ,P.name
-                        # ,T.type_name
+                        #,T.type_name
                         ,GROUP_CONCAT(T.type_name ORDER BY P.id SEPARATOR ' | ') AS type_name
                     FROM pokemon P
                     INNER JOIN pokemons_types PT ON P.id = PT.pokemon_id
